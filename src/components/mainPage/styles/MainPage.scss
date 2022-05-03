@@ -2,16 +2,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Roboto'; // это плохая практика, но в данном приложении, пока, везде используется лишь данное семейство шрифтов
 }
-main.main_main-page {
-    display: block;
-    background: #e5edfa;
+
+.users-main-page {
     position: relative;
-    height: 100vh;
     width: 100vw;
-    .main-page-container {
-        margin: 0 auto;
-        max-width: 1200px;
-        width: 100%;
-    }
+    height: 100vh;
+    display: flex;
 }

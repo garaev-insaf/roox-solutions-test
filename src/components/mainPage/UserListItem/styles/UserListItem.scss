@@ -1,0 +1,40 @@
+@mixin user-info-font-style {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+}
+
+.user-list-item {
+    margin-top: 24px;
+    position: relative;
+    background-color: #f3f3f3;
+    border-radius: 8px;
+    padding: 10px;
+    ul.users-info-list {
+        display: flex;
+        flex-direction: column;
+        li.users-info-list__item {
+            margin-top: 8px;
+            list-style-type: none;
+            display: flex;
+            h4.user-info-header-text {
+                color: #a3a3a3;
+                @include user-info-font-style;
+                margin-right: 7px;
+            }
+            span {
+                @include user-info-font-style;
+            }
+        }
+    }
+    button.button_deatils {
+        cursor: pointer;
+        @include user-info-font-style;
+        color: #4b51ef;
+        border: none;
+        background: transparent;
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+    }
+}

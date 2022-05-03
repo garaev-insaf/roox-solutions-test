@@ -1,15 +1,17 @@
 import * as React from "react";
-
+import UserSidebar from "../UsersSidebar/UsersSidebar";
 import './styles/MainPage.scss'
+import UsersList from "./UsersListPage/UsersList";
 
 const MainPage: React.FC = () => {
 
     return (
-        <main className="main_main-page">
-            <div className="main-page-container">
-
+        <>
+            <div className="users-main-page">
+                <UserSidebar />
+                <UsersList />
             </div>
-        </main>
+        </>
     );
 };
 

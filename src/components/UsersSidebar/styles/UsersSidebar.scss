@@ -1,0 +1,30 @@
+@mixin sidebar-font-style {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+}
+aside.user-sidebar {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 35px 20px;
+    background: #bdbdbd;
+    span {
+        @include sidebar-font-style;
+    }
+    .button-wrapper {
+        button {
+            display: block;
+            text-align: center;
+            white-space: nowrap;
+            padding: 5px 15px;
+            cursor: pointer;
+            margin-top: 10px;
+            background: #4b51ef;
+            border-radius: 5px;
+            color: white;
+            border: none;
+            @include sidebar-font-style;
+        }
+    }
+}
