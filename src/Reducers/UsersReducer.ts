@@ -7,4 +7,13 @@ const UsersListReducer = (usersList = [], action) => {
     }
 };
 
-export { UsersListReducer}
+const CurrentUserReducer = (currentUser = null, action) => {
+    switch (action.type) {
+        case "GET_CURRENT_USER":
+            return action.currentUser.data;
+        default:
+            return currentUser;
+    }
+}
+
+export { UsersListReducer, CurrentUserReducer }

@@ -1,21 +1,63 @@
 import * as React from "react";
-import UserListItem from "../UserListItem/UserListItem";
+import { connect } from "react-redux";
+import { useEffect } from "react";
+import { getUsers } from "../../../Actions/UsersAction";
+import UserListItem from "./UserListItem/UserListItem";
 import './styles/UsersList.scss'
+import { UserStateType } from "../static/static";
+import { useUsers } from "../contexts/currentUsersContext/UsersContext";
 
-const UsersList: React.FC = () => {
+interface IUserListProps {
+    loader: boolean,
+    getUsers(): Promise<void>,
+    userList: UserStateType[] | [],
+}
+
+const UsersList: React.FC<IUserListProps> = ({ loader, getUsers, userList }) => {
+    const {userListState, setUserListState} = useUsers() // главный стейт; хранит в себе список пользователей
+
+    useEffect(() => {
+        getUsers();
+    }, []);
+    useEffect(() => {
+        setUserListState(userList);
+    }, [userList])
 
     return (
-        <main className="users-list-main">
-            <header className="user-list-header">
-                <h1 className="header-text">Список пользователей</h1>
-            </header>
-            <main className="users-wrapper">
-                <UserListItem />
-                <UserListItem />
-            </main>
-        </main>
+        <>
+            {!loader ?
+                <main className="users-list-main users-main">
+                    <div className="user-list-header">
+                        <h1 className="header-text">Список пользователей</h1>
+                    </div>
+                    <div className="users-wrapper">
+
+                        {userListState.length > 0 ? // на случай получения пустого массива с сервера
+                            userListState.map((elem) =>
+                                <UserListItem userInfo={elem} key={elem.id} />
+                            )
+                            : null}
+                        <div className="users-count">
+                            <p className="users-count-text">Найдено {userListState.length} пользователей</p>
+                        </div>
+                    </div>
+                </main>
+                : <h1>Загрузка</h1>}
+        </>
     );
 };
 
-export default UsersList;
+const mapStateToProps = (state: any) => {
+    return {
+        userList: state.userList,
+        loader: state.loadingStatus.loading,
+    };
+};
+
+const mapDispatchToProps = {
+    getUsers,
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(UsersList);
 

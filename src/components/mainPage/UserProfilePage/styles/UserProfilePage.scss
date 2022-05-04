@@ -1,0 +1,82 @@
+@mixin user-profile-font-style {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+@mixin user-profile-button-style {
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+main.user-profile-main {
+    .user-profile-header {
+        display: flex;
+        justify-content: space-between;
+        button.button_edit-form {
+            background: #4b51ef;
+            color: white;
+            @include user-profile-button-style;
+        }
+    }
+    form.form_user-profile {
+        padding: 20px 12px;
+        margin-top: 10px;
+        ul.current-user-info-list {
+            list-style-type: none;
+            @include user-profile-font-style;
+            li.current-user-info-list__item {
+                margin-top: 10px;
+                label {
+                    display: flex;
+                    flex-direction: column;
+                    input {
+                        min-width: 211px;
+                        width: 30%;
+                    }
+                    input,
+                    textarea {
+                        margin-top: 3px;
+                        background: #ffffff;
+                        outline: 1px solid #d8d8d8;
+                        border: 1px solid #d8d8d8;
+                        box-sizing: border-box;
+                        border-radius: 5px;
+                        padding: 5px 10px;
+                        color: black;
+                        @include user-profile-font-style;
+                    }
+                    input:read-only,
+                    textarea:read-only {
+                        color: rgba(0, 0, 0, 0.3);
+                    }
+                    input.error {
+                        border: 1px solid #d91313 !important;
+                        outline: 1px solid #d91313 !important;
+                    }
+                    textarea {
+                        width: 100%;
+                        resize: none;
+                        height: 5em;
+                        overflow: auto;
+                    }
+                }
+            }
+        }
+        input.input_send-form {
+            background: #52cf4f;
+            display: block;
+            margin: 29px 0 0 auto;
+            color: #ffffff;
+            @include user-profile-button-style;
+        }
+        input.input_send-form:disabled {
+            background: #afafaf;
+        }
+    }
+}

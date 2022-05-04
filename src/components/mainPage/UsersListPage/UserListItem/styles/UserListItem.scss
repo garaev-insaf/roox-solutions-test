@@ -27,8 +27,9 @@
             }
         }
     }
-    button.button_deatils {
+    a.link_details {
         cursor: pointer;
+        text-decoration: none;
         @include user-info-font-style;
         color: #4b51ef;
         border: none;
