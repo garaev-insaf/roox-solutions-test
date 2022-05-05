@@ -7,7 +7,7 @@
 
 .users-main-page {
     position: relative;
-    width: 100vw;
+    width: 100%;
     min-height: 100vh;
     height: 100%;
     display: flex;
@@ -22,4 +22,39 @@
             color: #000000;
         }
     }
+    main.users-main.show {
+        padding-left: calc(166px + 20px); // 20 - паддинг общей обертки, а 166 - паддинг от сайдбара
+    }
+    main.users-main.hide {
+        padding-left: 15; // 12 - паддинг общей обертки, а 166 - паддинг от сайдбара
+    }
 }
+
+@media (max-width: 768px) {
+    .users-main-page {
+        main.users-main {
+            padding: 20px 60px 25px 30px;
+            h1.header-text {
+                font-size: 14px;
+            }
+        }
+        main.users-main.show {
+            padding-left: calc(152px + 20px); // 20 - паддинг общей обертки, а 166 - паддинг от сайдбара
+        }
+    }
+}
+
+@media (max-width: 576px) {
+    .users-main-page {
+        main.users-main {
+            padding: 10px 30px 12.5px 15px;
+            h1.header-text {
+                font-size: 14px;
+            }
+        }
+        main.users-main.show {
+            padding-left: 20px; // 20 - паддинг общей обертки, а паддинга от сайдбара уже не будет, потому что он будет налезающим
+        }
+    }
+}
+

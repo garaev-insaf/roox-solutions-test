@@ -2,6 +2,18 @@
     font-style: normal;
     font-weight: 400;
     font-size: 15px;
+    @media (max-width: 768px) {
+        font-size: 11px;
+    }
+}
+
+@mixin user-details-link-style {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    @media (max-width: 768px) {
+        font-size: 12px;
+    }
 }
 
 .user-list-item {
@@ -30,7 +42,7 @@
     a.link_details {
         cursor: pointer;
         text-decoration: none;
-        @include user-info-font-style;
+        @include user-details-link-style;
         color: #4b51ef;
         border: none;
         background: transparent;

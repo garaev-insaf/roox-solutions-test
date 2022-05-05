@@ -1,7 +1,25 @@
-@mixin user-profile-font-style {
+@mixin user-profile-inputs-font-style {
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
+    @media (max-width: 768px) {
+        font-size: 12px;
+    }
+    @media (max-width: 665px) {
+        font-size: 10px;
+    }
+}
+
+@mixin user-profile-label-font-style {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    @media (max-width: 768px) {
+        font-size: 11px;
+    }
+    @media (max-width: 665px) {
+        font-size: 8px;
+    }
 }
 
 @mixin user-profile-button-style {
@@ -12,6 +30,12 @@
     font-weight: 400;
     font-size: 15px;
     cursor: pointer;
+    @media (max-width: 768px) {
+        font-size: 12px;
+    }
+    @media (max-width: 576px) {
+        font-size: 10px;
+    }
 }
 
 main.user-profile-main {
@@ -24,15 +48,23 @@ main.user-profile-main {
             @include user-profile-button-style;
         }
     }
+    button.button_route-back {
+        display: none;
+        margin-top: 5px;
+        border: none;
+        background: #4b51ef;
+        color: white;
+        @include user-profile-button-style;
+    }
     form.form_user-profile {
         padding: 20px 12px;
         margin-top: 10px;
         ul.current-user-info-list {
             list-style-type: none;
-            @include user-profile-font-style;
             li.current-user-info-list__item {
                 margin-top: 10px;
                 label {
+                    @include user-profile-label-font-style;
                     display: flex;
                     flex-direction: column;
                     input {
@@ -49,7 +81,7 @@ main.user-profile-main {
                         border-radius: 5px;
                         padding: 5px 10px;
                         color: black;
-                        @include user-profile-font-style;
+                        @include user-profile-inputs-font-style;
                     }
                     input:read-only,
                     textarea:read-only {
@@ -78,5 +110,11 @@ main.user-profile-main {
         input.input_send-form:disabled {
             background: #afafaf;
         }
+    }
+}
+
+@media (max-width: 576px) {
+    button.button_route-back {
+        display: block !important;
     }
 }

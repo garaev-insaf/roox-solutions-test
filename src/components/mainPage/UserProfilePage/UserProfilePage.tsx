@@ -1,11 +1,13 @@
 import * as React from "react";
 import { connect } from "react-redux";
+import { history } from "../../../Store/Store";
 import { useEffect, useState } from "react";
 import { useUsers } from "../contexts/currentUsersContext/UsersContext";
 import { getСurrentUser } from "../../../Actions/UsersAction";
 import './styles/UserProfilePage.scss'
 import { UserStateType } from "../static/static";
 import { emailValidation, phoneValidation, websiteValidation } from "../../scripts/validators";
+import { useSidebar } from '../contexts/SidebarContext';
 
 interface IUserProfilePageProps {
     loaderStatus: {
@@ -16,6 +18,7 @@ interface IUserProfilePageProps {
 }
 
 const UserProfilePage: React.FC<IUserProfilePageProps> = ({ loaderStatus, getСurrentUser, currentUser }) => {
+    const { showSidebar } = useSidebar();
     const initialInvalidDatas = {
         email: false,
         phone: false,
@@ -74,17 +77,20 @@ const UserProfilePage: React.FC<IUserProfilePageProps> = ({ loaderStatus, getСu
             setInvalidDatasState(initialInvalidDatas); // обнуляем ошибки
         }
         console.log(currentUserState);
+        history.goBack();
     }
     return (
         <>
             {loaderStatus.loading ?
                 <h1>Загрузка</h1>
                 :
-                <main className="user-profile-main users-main">
+                <main className={`user-profile-main users-main ${window.innerWidth < 576 ? !showSidebar ? 'show' : 'hide' : 'show'}`}>
                     <div className="user-profile-header">
                         <h1 className="header-text">Профиль пользователя</h1>
                         <button className="button_edit-form" onClick={() => setEditFlagState(false)}>Редактировать</button>
                     </div>
+                    {/* Не смотря на то, что макет под 665px и в нём не было логики перехода назад, я решил дерзнуть и добавить от себя. Т.к. данное разрешение уже затрагивает сенсорные девайсы*/}
+                    <button className="button button_route-back" onClick={() => history.goBack()}>назад</button>
                     <form className="form_user-profile" onSubmit={(e) => handleSubmit(e)}>
                         <ul className="current-user-info-list">
                             <li className="current-user-info-list__item">

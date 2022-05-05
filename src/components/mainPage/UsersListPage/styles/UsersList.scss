@@ -1,5 +1,10 @@
 main.users-list-main {
-    footer.users-count {
+    .users-wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    .users-count {
         display: block;
         margin-left: auto;
         margin-top: 20px;
@@ -7,5 +12,13 @@ main.users-list-main {
         font-style: normal;
         font-weight: 400;
         font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    main.users-list-main {
+        .users-count {
+            font-size: 12px;
+        }
     }
 }

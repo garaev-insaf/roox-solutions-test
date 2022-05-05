@@ -6,6 +6,7 @@ import UserListItem from "./UserListItem/UserListItem";
 import './styles/UsersList.scss'
 import { UserStateType } from "../static/static";
 import { useUsers } from "../contexts/currentUsersContext/UsersContext";
+import { useSidebar } from '../contexts/SidebarContext';
 
 interface IUserListProps {
     loader: boolean,
@@ -14,11 +15,13 @@ interface IUserListProps {
 }
 
 const UsersList: React.FC<IUserListProps> = ({ loader, getUsers, userList }) => {
+    const { showSidebar } = useSidebar();
     const {userListState, setUserListState} = useUsers() // главный стейт; хранит в себе список пользователей
 
     useEffect(() => {
         getUsers();
     }, []);
+
     useEffect(() => {
         setUserListState(userList);
     }, [userList])
@@ -26,7 +29,7 @@ const UsersList: React.FC<IUserListProps> = ({ loader, getUsers, userList }) => 
     return (
         <>
             {!loader ?
-                <main className="users-list-main users-main">
+                <main className={`users-list-main users-main ${window.innerWidth < 576 ? !showSidebar ? 'show' : 'hide' : 'show'}`}>
                     <div className="user-list-header">
                         <h1 className="header-text">Список пользователей</h1>
                     </div>
